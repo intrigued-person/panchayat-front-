@@ -1,0 +1,62 @@
+/* UserRegister.css */
+
+/* Container styling */
+.register-container {
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    padding: 20px;
+}
+
+/* Card styling */
+.register-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Form input styling */
+.form-input {
+    height: 50px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+}
+
+.form-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+}
+
+/* Button styling */
+.submit-btn {
+    background-color: #007bff;
+    border-color: #007bff;
+    height: 50px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Link styling */
+.link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* Image logo styling */
+.logo {
+    max-width: 150px;
+    max-height: 150px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+}

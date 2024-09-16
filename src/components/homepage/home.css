@@ -1,0 +1,78 @@
+/* home.css */
+
+/* Carousel styling */
+.carousel-image {
+    height: 550px;
+    /* Adjust based on your needs */
+    object-fit: cover;
+}
+
+/* Announcement cards */
+.announcement-card {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.announcement-link {
+    color: #d9534f;
+    text-decoration: underline;
+}
+
+.announcement-link:hover {
+    color: #c9302c;
+}
+
+/* Course cards */
+.course-card {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Testimonials section */
+.testimonial-item {
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.testimonial-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+/* Pagination for testimonials */
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    background: #007bff;
+    color: #ffffff;
+}
+
+.page-link.active {
+    background: #0056b3;
+}
+
+/* Footer styling */
+footer {
+    background: #343a40;
+}
+
+footer p {
+    margin-bottom: 0;
+}
+
+footer h5 {
+    margin-top: 0;
+    font-size: 1.25rem;
+}

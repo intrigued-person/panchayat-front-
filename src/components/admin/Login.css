@@ -1,0 +1,72 @@
+/* Login.css */
+
+/* Container styling */
+.login-container {
+    background: linear-gradient(135deg, #f5f7f9, #e0eafc);
+    padding: 20px;
+}
+
+/* Card styling */
+.login-card {
+    background: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-card .form-input {
+    height: 50px;
+    font-size: 16px;
+}
+
+.login-card .form-label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.login-card .login-btn {
+    background-color: #007bff;
+    border-color: #007bff;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+.login-card .login-btn:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.go-home-link {
+    font-size: 16px;
+    color: #007bff;
+}
+
+.go-home-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* Image logo styling */
+.logo {
+    max-width: 150px;
+    max-height: 150px;
+    background-color: #edf0f5;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Footer styling */
+footer {
+    background: #343a40;
+    color: #f8f9fa;
+}
+
+footer p {
+    margin-bottom: 0;
+}
+
+footer h5 {
+    margin-top: 0;
+    font-size: 1.25rem;
+}

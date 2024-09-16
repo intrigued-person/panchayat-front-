@@ -1,0 +1,38 @@
+/* UserLogin.css */
+
+.bg-gradient {
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+}
+
+.login-container {
+    padding: 0;
+}
+
+.login-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    max-width: 150px;
+}
+
+.text-lg {
+    font-size: 1.2rem;
+}
+
+.link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #343a40;
+    color: #f8f9fa;
+}
