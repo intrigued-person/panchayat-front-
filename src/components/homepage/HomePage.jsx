@@ -9,19 +9,19 @@ const HomePage = () => {
         {
             avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
             name: "Martin Escobar",
-            title: "Founder of Meta",
+            title: "Cheif Executive Officer",
             quote: "Innovative thinking and dedication to excellence are key to transforming the future. Our success is built on a foundation of hard work and visionary leadership.",
         },
         {
             avatar: "https://randomuser.me/api/portraits/women/79.jpg",
             name: "Angela Stian",
-            title: "Product Designer",
+            title: "Assistant Manager",
             quote: "Design is not just about creating beautiful things; it's about solving problems and enhancing user experiences. Every project is an opportunity to make a meaningful impact.",
         },
         {
             avatar: "https://randomuser.me/api/portraits/men/86.jpg",
             name: "Karim Ahmed",
-            title: "DevOps Engineer",
+            title: "Department Head",
             quote: "In the world of technology, adaptability and continuous improvement are essential. Embracing new challenges and optimizing processes drive success and efficiency.",
         },
     ];
@@ -48,23 +48,23 @@ const HomePage = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100 carousel-image"
-                        src="https://wallpapercave.com/wp/wp2140467.jpg"
+                        src="https://1.bp.blogspot.com/-V2m6oQGnO3Q/VdrFH3l_WCI/AAAAAAAAAYk/X0FcJFjpZIk/s1600/_dsc00841.jpg"
                         alt="Campus"
                     />
                     <Carousel.Caption>
-                        <h3>Campus</h3>
-                        <p>Good and clean Campus</p>
+                        <h3>Office</h3>
+                        <p>Good and clean Office</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
                         className="d-block w-100 carousel-image"
-                        src="https://wallpaperaccess.com/full/5487905.jpg"
+                        src="https://th.bing.com/th/id/R.fac179f81ecf2fab1bfa32221033ad69?rik=vd0vbdVh0JNFUQ&riu=http%3a%2f%2f3.bp.blogspot.com%2f-GFOLa5HssEM%2fVdrFfN_sgCI%2fAAAAAAAAAY0%2fKrIRzHYohhc%2fs1600%2f_DSC0191.JPG&ehk=PzcYg8uSEKwo7P6lUsDCt75b1pojW%2fFUprOwUaYLaxU%3d&risl=&pid=ImgRaw&r=0"
                         alt="Library"
                     />
                     <Carousel.Caption>
-                        <h3>Library</h3>
-                        <p>Nice place to learn</p>
+                        <h3>Office</h3>
+                        <p>Working hours!!</p>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
@@ -87,9 +87,9 @@ const HomePage = () => {
                     <Col md={6}>
                         <Card className="announcement-card">
                             <Card.Body>
-                                <Card.Title>Admission Started</Card.Title>
+                                <Card.Title>Hiring Started</Card.Title>
                                 <Card.Text>
-                                    2024-2025 admission started.{" "}
+                                    2024-2025 Hiring started.{" "}
                                     <a href="/instruction" className="announcement-link">
                                         Register and Apply your Application!!!
                                     </a>
@@ -102,7 +102,7 @@ const HomePage = () => {
                             <Card.Body>
                                 <Card.Title>Result Announced</Card.Title>
                                 <Card.Text>
-                                    2023-2024 semester results have been announced.{" "}
+                                    2023-2024 exam results have been announced.{" "}
                                     <a href="#" className="announcement-link">
                                         Check your results here
                                     </a>
@@ -115,14 +115,14 @@ const HomePage = () => {
 
             {/* Course Details */}
             <Container className="my-5">
-                <h2 className="text-center mb-4">Course Details</h2>
+                <h2 className="text-center mb-4">Staff Details</h2>
                 <Row>
                     <Col md={6}>
                         <Card className="course-card">
                             <Card.Body>
-                                <Card.Title>UG Courses</Card.Title>
+                                <Card.Title>Junior Staff</Card.Title>
                                 <Card.Text>
-                                    Course description goes here. Add more course details as needed.
+                                    Job description goes here. Add more job details as needed.
                                 </Card.Text>
                                 <Button variant="primary">View More</Button>
                             </Card.Body>
@@ -131,9 +131,9 @@ const HomePage = () => {
                     <Col md={6}>
                         <Card className="course-card">
                             <Card.Body>
-                                <Card.Title>PG Courses</Card.Title>
+                                <Card.Title>Senior Staff</Card.Title>
                                 <Card.Text>
-                                    Another course description goes here. You can add more courses below.
+                                    Another job description goes here. You can add more jobs below.
                                 </Card.Text>
                                 <Button variant="primary">View More</Button>
                             </Card.Body>
@@ -145,7 +145,7 @@ const HomePage = () => {
             {/* Testimonials */}
             <section className="py-5 bg-light">
                 <Container className="text-center">
-                    <h3 className="text-dark font-weight-bold pb-4">Alumni</h3>
+                    <h3 className="text-dark font-weight-bold pb-4">Employees</h3>
                     <Row>
                         <Col>
                             <ul className="list-unstyled">
@@ -182,23 +182,23 @@ const HomePage = () => {
                 <Container>
                     <Row className="align-items-center">
                         <Col md={4} className="mb-3 mb-md-0">
-                            <h5>University of Houston</h5>
-                            <p>Houston, Texas 77204</p>
+                            <h5>E-PANCHAYAT OFFICE</h5>
+                            <p>Nehru nagar, Madurai 625001</p>
                             <p>(713) 743-2255</p>
                         </Col>
                         <Col md={4} className="mb-3 mb-md-0 text-center">
                             <h5>About Us</h5>
                             <p>
-                                Follow us on our social media platforms including Facebook, Instagram, YouTube, Twitter, and Google+ University of Houston.
+                                Follow us on our social media platforms including Facebook, Instagram, YouTube, Twitter, and Google+ E-panchayat office.
                             </p>
                         </Col>
                         <Col md={4} className="text-center">
                             <h5>Quick Links</h5>
                             <Nav className="justify-content-center">
                                 <Nav.Link as={Link} to="/about" className="footer-link">About Us</Nav.Link>
-                                <Nav.Link as={Link} to="/course" className="footer-link">Courses</Nav.Link>
-                                <Nav.Link as={Link} to="/stafflogin" className="footer-link">Staff Login</Nav.Link>
-                                <Nav.Link as={Link} to="/studentlogin" className="footer-link">Student Login</Nav.Link>
+                                <Nav.Link as={Link} to="/course" className="footer-link">FAQ</Nav.Link>
+                                <Nav.Link as={Link} to="/adminLog" className="footer-link">Employee Login</Nav.Link>
+                                <Nav.Link as={Link} to="/userLog" className="footer-link">Student Login</Nav.Link>
                             </Nav>
                         </Col>
                     </Row>

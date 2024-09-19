@@ -1,0 +1,84 @@
+/* src/UserLanding.css */
+
+/* General styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .user-landing {
+    text-align: center;
+  }
+  
+  /* Navbar styling */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #282c34;
+    padding: 1rem;
+    color: white;
+  }
+  
+  .navbar-title {
+    margin: 0;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+  }
+  
+  .navbar-links li {
+    margin: 0;
+  }
+  
+  .navbar-links a, .navbar-links button {
+    color: white;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  /* Card styling */
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    background-color: white;
+  }
+  
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-name {
+    font-size: 1rem;
+  }
+  
+  /* CardGrid styling */
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .card-grid .card {
+    flex: 1 1 calc(20% - 2rem); /* 5 cards per row with spacing */
+    margin: 0.5rem;
+  }
+  
+  /* Section styling */
+  section {
+    padding: 2rem;
+    margin: 1rem;
+  }
+  

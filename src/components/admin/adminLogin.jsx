@@ -36,8 +36,12 @@ const Login = () => {
                 sessionStorage.setItem("empName", res.data.empName);
                 if (res.data.role === "admin") {
                     navigate("/AdminDash");
+                } else if(res.data.role === "death") {
+                    navigate("/empDeathView");
+                } else if(res.data.role === "birth"){
+                    navigate("/empBirthView");
                 } else {
-                    navigate("/EmpDash");
+                    navigate('/empIssue');
                 }
             }).catch((err) => {
                 Swal.fire({
@@ -58,7 +62,7 @@ const Login = () => {
                         <div className="login-card p-4 shadow rounded bg-white">
                             <div className="text-center mb-4">
                                 <Image
-                                    src="https://static.vecteezy.com/system/resources/previews/006/470/647/original/university-education-logo-design-template-free-vector.jpg"
+                                    src="https://th.bing.com/th/id/OIP.ZQaH_xTSaX11QrpFt6auNQAAAA?rs=1&pid=ImgDetMain"
                                     alt="College Logo"
                                     fluid
                                     className="logo"

@@ -1,0 +1,46 @@
+IssuesTable.css
+
+.table-container {
+    width: 80%;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #333;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+  }
+  .btn{
+    margin-left: 1100px;
+  }
+  

@@ -5,13 +5,13 @@ import logo from './logo.png'; // Import your logo image here
 
 const Topnav = () => {
   return (
-    <Navbar expand="lg" style={{ height: "70px", backgroundColor: "#FF0000", borderBottom: "1px solid #ccc" }}>
+    <Navbar expand="lg" style={{ height: "70px", backgroundColor: "#0f2353", borderBottom: "1px solid #ccc" }}>
       <Container>
         <Navbar.Brand href="/" style={{ display: 'flex', alignItems: 'center' }}>
-          <img src={logo} alt="University Logo" style={{ height: "50px", marginRight: "10px" }} />
+          <img src="https://www.logolynx.com/images/logolynx/b9/b94e73cdeec8d1be64386815ab2e22ca.jpeg" alt="University Logo" style={{ height: "50px", marginRight: "10px" }} />
           <b>
-            <span style={{ color: "white" }} role="univlabel">University of </span>
-            <span style={{ color: "white", fontWeight: "bold" }} role="clglabel">Houston</span>
+            <span style={{ color: "white" }} role="univlabel">E-PANCHAYAT </span>
+            <span style={{ color: "white", fontWeight: "bold" }} role="clglabel">OFFICE</span>
           </b>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -41,14 +41,14 @@ const Topnav = () => {
             </Nav.Link>
             <Nav.Link
               as={Link}
-              to="/course"
+              to="/search"
               role="courselabel"
               style={{ color: "#FFD700", fontWeight: "lighter" }}
               className="nav-link"
               onMouseEnter={(e) => e.target.style.color = 'white'}
               onMouseLeave={(e) => e.target.style.color = '#FFD700'}
             >
-              Courses
+              Search
             </Nav.Link>
             <Nav.Link
               as={Link}
@@ -59,7 +59,7 @@ const Topnav = () => {
               onMouseEnter={(e) => e.target.style.color = 'white'}
               onMouseLeave={(e) => e.target.style.color = '#FFD700'}
             >
-             Employee Login
+              Employee Login
             </Nav.Link>
             <Nav.Link
               as={Link}
@@ -70,7 +70,7 @@ const Topnav = () => {
               onMouseEnter={(e) => e.target.style.color = 'white'}
               onMouseLeave={(e) => e.target.style.color = '#FFD700'}
             >
-              Student Login
+              User Login
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

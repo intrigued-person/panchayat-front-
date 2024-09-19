@@ -3,18 +3,16 @@ import { Container, Form, Button, Card } from 'react-bootstrap';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-
-class StorageUtil {
-    static setReason(birthCertificate) {
-        sessionStorage.setItem('reason', birthCertificate);
-    }
-}
-
+import Navbar from '../navComp/Navbar';
 function BirthForm() {
     const navigate = useNavigate();
     const [currentStep, setCurrentStep] = useState(1);
     const [userId, setUserId] = useState('');
-    const [birthCertificate, setBirthCertificate] = useState('');
+
+    const uname = sessionStorage.getItem('userName');
+    const uemail = sessionStorage.getItem('email');
+    const umobile = sessionStorage.getItem('mobile');
+
     const [formData, setFormData] = useState({
         district: '',
         mobile: '',
@@ -33,17 +31,23 @@ function BirthForm() {
         motherMrgYr: '',
         motherBirthYr: '',
         certificateType: '',
-        status: '',
+        status: 'applied',
         address: '',
         state: '',
         hospitalImg: null,
+        reason: 'birth certificate',
     });
-
+    const [paymentData, setPaymentData] = useState({
+        amount: 200.00,
+        transactionId: '',
+        date: new Date().toISOString(),
+        reason: 'birth certificate',
+    });
+    const generateTransactionId = () => {
+        return 'TXN-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+    };
+    const [paymentId, setPaymentId] = useState('');
     const [errors, setErrors] = useState({});
-    // setReason = 'reason';
-   // sessionStorage.setItem('birth', reason);
-   //sessionStorage.setItem('reason', birthCertificate);
-
     useEffect(() => {
         const storedUserId = sessionStorage.getItem('userId');
         if (storedUserId) {
@@ -52,7 +56,6 @@ function BirthForm() {
             console.error('User ID not found in sessionStorage');
         }
     }, []);
-
     const validateStep1 = () => {
         const newErrors = {};
         if (!formData.district) newErrors.district = 'District is required';
@@ -63,7 +66,6 @@ function BirthForm() {
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
-
     const validateStep2 = () => {
         const newErrors = {};
         if (!formData.childName) newErrors.childName = "Child's Name is required";
@@ -78,11 +80,16 @@ function BirthForm() {
         if (!formData.motherMrgYr) newErrors.motherMrgYr = "Mother's Marriage Year is required";
         if (!formData.motherBirthYr) newErrors.motherBirthYr = "Mother's Birth Year is required";
         if (!formData.certificateType) newErrors.certificateType = 'Certificate Type is required';
-        if (!formData.status) newErrors.status = 'Status is required';
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
-
+    const validateStep3 = () => {
+        const newErrors = {};
+        if (!formData.address) newErrors.address = 'Address is required';
+        if (!formData.state) newErrors.state = 'State is required';
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
         setFormData({
@@ -90,7 +97,14 @@ function BirthForm() {
             [name]: type === 'file' ? files[0] : value
         });
     };
-
+    const handlePaymentChange = (e) => {
+        const { name, value } = e.target;
+        setPaymentData(prevData => ({
+            ...prevData,
+            [name]: value,
+            transactionId: generateTransactionId() // Auto-generate transactionId
+        }));
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
         if (currentStep === 1) {
@@ -102,88 +116,93 @@ function BirthForm() {
                 nextStep();
             }
         } else if (currentStep === 3) {
-            nextStep();
+            if (validateStep3()) {
+                nextStep();
+            }
         } else if (currentStep === 4) {
             const formDataToSubmit = new FormData();
             for (const key in formData) {
                 formDataToSubmit.append(key, formData[key]);
             }
             formDataToSubmit.append('userId', userId);
-            //    formDataToSubmit.append('paymentId', 1);
+            formDataToSubmit.append('generate', new Date().toISOString());
 
-            // Add the missing 'generate' parameter
-            formDataToSubmit.append('generate', '2024-09-11T00:00:00'); // Replace 'someValue' with the appropriate value
-            StorageUtil.setReason(birthCertificate);
             axios.post('http://localhost:9952/birth', formDataToSubmit)
                 .then((response) => {
-                    // Assuming the response contains birthId and reason
                     const { birthId } = response.data;
-
-                    // Store birthId and reason in sessionStorage
                     sessionStorage.setItem('birthId', birthId);
-                    
-
-                    Swal.fire({
-                        title: "Application Submitted Successfully!",
-                        text: "Your application has been submitted successfully.",
-                        icon: "success",
-                    });
-                    navigate("/payment");
+                    nextStep();
                 })
                 .catch((error) => {
                     console.error(error);
                 });
+        } else if (currentStep === 5) {
+            axios.post('http://localhost:9952/payment', paymentData)
+                .then((response) => {
+                    const { paymentId } = response.data;
+                    setPaymentId(paymentId); // Set paymentId in state
+                    sessionStorage.setItem('paymentId', paymentId);
+                    Swal.fire({
+                        title: "Payment Successful!",
+                        text: "Your payment has been processed successfully.",
+                        icon: "success",
+                    });
+                    nextStep();
+                })
+                .catch((error) => {
+                    console.error(error);
+                    Swal.fire({
+                        title: "Payment Failed!",
+                        text: "There was an error processing your payment.",
+                        icon: "error",
+                    });
+                });
+        } else if (currentStep === 6) {
+            const finalFormData = new FormData();
+            for (const key in formData) {
+                finalFormData.append(key, formData[key]);
+            }
+            finalFormData.append('userId', userId);
+            finalFormData.append('paymentId', paymentId);
+            finalFormData.append('generate', new Date().toISOString());
+            axios.post('http://localhost:9952/birth', finalFormData)
+                .then((response) => {
+                    Swal.fire({
+                        title: "Submission Successful!",
+                        text: "Your birth certificate application has been submitted successfully.",
+                        icon: "success",
+                    });
+                    navigate("/userLand"); // Navigate to a confirmation page or dashboard
+                })
+                .catch((error) => {
+                    console.error(error);
+                    Swal.fire({
+                        title: "Submission Failed!",
+                        text: "There was an error submitting your birth certificate application.",
+                        icon: "error",
+                    });
+                });
         }
     };
-
-
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (currentStep === 1) {
-    //         if (validateStep1()) {
-    //             nextStep();
-    //         }
-    //     } else if (currentStep === 2) {
-    //         if (validateStep2()) {
-    //             nextStep();
-    //         }
-    //     } else if (currentStep === 3) {
-    //         nextStep();
-    //     } else if (currentStep === 4) {
-    //         const formDataToSubmit = new FormData();
-    //         for (const key in formData) {
-    //             formDataToSubmit.append(key, formData[key]);
-    //         }
-    //         formDataToSubmit.append('userId', userId);
-
-    //         axios.post('http://localhost:9952/birth', formDataToSubmit)
-    //             .then((response) => {
-    //                 Swal.fire({
-    //                     title: "Application Submitted Successfully!",
-    //                     text: "Your application has been submitted successfully.",
-    //                     icon: "success",
-    //                 });
-    //                 navigate("/home");
-    //             })
-    //             .catch((error) => {
-    //                 console.error(error);
-    //             });
-    //     }
-    // };
-
     const nextStep = () => {
-        if (currentStep < 4) setCurrentStep(currentStep + 1);
+        if (currentStep === 4) {
+            // Generate transaction ID when entering the payment step
+            setPaymentData(prevData => ({
+                ...prevData,
+                transactionId: generateTransactionId() // Generate transaction ID
+            }));
+        }
+        if (currentStep < 6) setCurrentStep(currentStep + 1);
     };
-
-    const prevStep = () => {
+   const prevStep = () => {
         if (currentStep > 1) setCurrentStep(currentStep - 1);
     };
-
     return (
+        <>
+        {/* <Navbar></Navbar> */}
         <Container>
             <Card className="p-4 mb-4 custom-card">
-                <div className="progress-bar" style={{ width: `${(currentStep / 4) * 100}%` }}></div>
+                <div className="progress-bar" style={{ width: `${(currentStep / 6) * 100}%` }}></div>
                 <Form onSubmit={handleSubmit}>
                     {currentStep === 1 && (
                         <div>
@@ -207,6 +226,7 @@ function BirthForm() {
                                     value={formData.mobile}
                                     onChange={handleChange}
                                     placeholder="Enter Mobile Number"
+                                    defaultValue={umobile}
                                 />
                                 {errors.mobile && <Form.Text className="text-danger">{errors.mobile}</Form.Text>}
                             </Form.Group>
@@ -242,7 +262,6 @@ function BirthForm() {
                                     <option value="">Select Gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
                                 </Form.Control>
                                 {errors.gender && <Form.Text className="text-danger">{errors.gender}</Form.Text>}
                             </Form.Group>
@@ -388,26 +407,12 @@ function BirthForm() {
                                     onChange={handleChange}
                                 >
                                     <option value="">Select Certificate Type</option>
-                                    <option value="Birth Certificate">Birth Certificate</option>
-                                    <option value="Stillbirth Certificate">Stillbirth Certificate</option>
+                                    <option value="Birth Certificate">English</option>
+                                    <option value="Stillbirth Certificate">Tamil</option>
                                 </Form.Control>
                                 {errors.certificateType && <Form.Text className="text-danger">{errors.certificateType}</Form.Text>}
                             </Form.Group>
-                            <Form.Group>
-                                <Form.Label>Status</Form.Label>
-                                <Form.Control
-                                    as="select"
-                                    name="status"
-                                    value={formData.status}
-                                    onChange={handleChange}
-                                >
-                                    <option value="">Select Status</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Approved">Approved</option>
-                                    <option value="Rejected">Rejected</option>
-                                </Form.Control>
-                                {errors.status && <Form.Text className="text-danger">{errors.status}</Form.Text>}
-                            </Form.Group>
+
                             <Button variant="secondary" type="button" onClick={prevStep}>Previous</Button>
                             <Button variant="primary" type="button" onClick={nextStep}>Next</Button>
                         </div>
@@ -457,13 +462,70 @@ function BirthForm() {
                                 {errors.hospitalImg && <Form.Text className="text-danger">{errors.hospitalImg}</Form.Text>}
                             </Form.Group>
                             <Button variant="secondary" type="button" onClick={prevStep}>Previous</Button>
-                            <Button variant="primary" type="submit">Submit</Button>
+                            <Button variant="primary" type="button" onClick={nextStep}>Next</Button>
+                        </div>
+                    )}
+
+                    {currentStep === 5 && (
+                        <div>
+                            <h3>Amount for Birth Certificate is 200</h3>
+                            <Card.Title>Payment</Card.Title>
+                            <Form.Group>
+                                <Form.Label>Amount</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="amount"
+                                    value={paymentData.amount}
+                                    readOnly
+                                />
+                            </Form.Group>
+                            <Button variant="secondary" type="button" onClick={prevStep}>Previous</Button>
+                            <Button variant="primary" type="submit">Submit Payment</Button>
+                        </div>
+                    )}
+
+                    {currentStep === 6 && (
+                        <div>
+                            <Card.Title>Summary</Card.Title>
+                            <div>
+                                <strong>Personal Information:</strong>
+                                <p>District: {formData.district}</p>
+                                <p>Mobile: {formData.mobile}</p>
+                                <p>Email: {formData.emailId}</p>
+                                <p>Date of Birth: {formData.dob}</p>
+                                <p>Gender: {formData.gender}</p>
+                                <strong>Birth Details:</strong>
+                                <p>Child's Name: {formData.childName}</p>
+                                <p>Father's Name: {formData.fatherName}</p>
+                                <p>Mother's Name: {formData.motherName}</p>
+                                <p>Place of Birth: {formData.placeOfBirth}</p>
+                                <p>Hospital Name: {formData.hospitalName}</p>
+                                <p>Town: {formData.town}</p>
+                                <p>Religion: {formData.religion}</p>
+                                <p>Father's Occupation: {formData.focup}</p>
+                                <p>Mother's Occupation: {formData.mocup}</p>
+                                <p>Mother's Marriage Year: {formData.motherMrgYr}</p>
+                                <p>Mother's Birth Year: {formData.motherBirthYr}</p>
+                                <p>Certificate Type: {formData.certificateType}</p>
+                                <p>Status: {formData.status}</p>
+                                <strong>Address Information:</strong>
+                                <p>Address: {formData.address}</p>
+                                <p>State: {formData.state}</p>
+                                <strong>Payment:</strong>
+                                <p>Amount: {paymentData.amount}</p>
+                                <p>Transaction ID: {paymentData.transactionId}</p>
+                                <p>Date: {paymentData.date}</p>
+                                <Button variant="secondary" type="button" onClick={prevStep}>Previous</Button>
+                                <Button variant="primary" type="submit">Confirm & Submit</Button>
+                            </div>
                         </div>
                     )}
                 </Form>
             </Card>
         </Container>
+        </>
     );
 }
 
 export default BirthForm;
+

@@ -1,0 +1,71 @@
+/* register.module.css */
+
+#register-container {
+    background-color: #f7f9fc; /* Light background for contrast */
+}
+
+#register-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+#logo {
+    width: 80px;
+    height: auto;
+}
+
+#register-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    color: #333;
+}
+
+#username-input,
+#email-input,
+#mobile-input,
+#password-input {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+#username-input:focus,
+#email-input:focus,
+#mobile-input:focus,
+#password-input:focus {
+    border-color: #007bff; /* Blue color on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#register-button {
+    background-color: #007bff; /* Bootstrap primary color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#register-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+#login-prompt {
+    font-size: 14px;
+    color: #555;
+}
+
+.link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    #register-card {
+        margin: 15px;
+    }
+}

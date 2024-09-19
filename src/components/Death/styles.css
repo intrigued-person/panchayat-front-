@@ -1,0 +1,107 @@
+.container1 {
+    height: 700px;
+    width: 760px;
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.download-btn1 {
+    position: fixed;
+   
+    top: 10px;
+    right: 10px;
+
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 10;
+   
+}
+
+.download-btn:hover {
+    background-color: #0056b3;
+}
+
+.inputField {
+    position: absolute;
+    right: 20px; /* Adjust this value as needed */
+    width: 180px; /* Set a fixed width for inputs */
+}
+
+#name1 {
+    margin-top: 280px;
+    margin-left: 70px;
+}
+
+#name2 {
+    margin-top: -55px;
+    margin-left: 300px;
+}
+
+#name3 {
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+#name4 {
+    margin-top: -40px;
+    margin-left: 280px;
+}
+
+#name5 {
+    margin-top: 73px;
+    margin-left: 50px;
+}
+
+#name6 {
+    margin-top: -100px;
+    margin-left: 50px;
+}
+
+#name7 {
+    margin-top: 80px;
+    margin-left: 40px;
+}
+
+#name8 {
+    margin-top: -40px;
+    margin-left: 250px;
+}
+
+#name9 {
+    margin-top:45px ;
+    margin-left:150px ;
+}
+
+.upload-container {
+    position: absolute;
+    top: 250px; /* Adjust this to position below the download button */
+    left: 600px; /* Align it with the download button */
+    text-align: center;
+}
+
+.upload-btn {
+    padding: 8px 16px;
+    background-color: #28a745; /* Green color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px; /* Space between input and button */
+}
+
+.upload-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}

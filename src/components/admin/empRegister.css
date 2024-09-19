@@ -58,4 +58,10 @@
   .submit-btn:hover {
     background-color: #0056b3;
   }
+  .error-message {
+    color: red;
+    font-size: 0.875rem; /* You can adjust the font size */
+    margin-top: 0.25rem; /* Space between input and error message */
+}
+
   

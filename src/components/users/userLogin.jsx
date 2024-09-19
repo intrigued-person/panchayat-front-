@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Link, useNavigate } from 'react-router-dom';
-import './userLogin.css'; // Import the CSS file
+import './userLogin.module.css'; // Import the CSS file
 
 const UserLogin = () => {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
@@ -22,10 +22,14 @@ const UserLogin = () => {
 
         axios.get(`http://localhost:9952/user/studentLogin/${credentials.email}/${credentials.password}`)
             .then(response => {
+                sessionStorage.setItem("userName", response.data.uname);
+                sessionStorage.setItem("userId", response.data.userId);
+                sessionStorage.setItem("email", response.data.uemail);
+                sessionStorage.setItem("mobile", response.data.mobileNo);
                 const user = response.data;
                 if (user && user.userId) {
                     sessionStorage.setItem('userId', user.userId);
-                    navigate('/birth');
+                    navigate('/userLand');
                 } else {
                     setError('Login response does not contain userId');
                 }

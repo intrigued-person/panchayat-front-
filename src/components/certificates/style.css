@@ -1,0 +1,71 @@
+.container1 {
+    height: 700px;
+    width: 560px;
+    position: relative;
+    overflow: hidden;
+}
+
+.container1 .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.container1 .download-btn1 {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.container1 .download-btn1:hover {
+    background-color: #0056b3;
+}
+
+.container1 .name1 {
+    margin-top: 240px;
+    margin-left: 280px;
+}
+
+.container1 .name2 {
+    margin-top: -20px;
+    margin-left: 280px;
+}
+
+.container1 .name3 {
+    margin-top: -20px;
+    margin-left: 280px;
+}
+
+.container1 .name4 {
+    margin-top: -3px;
+    margin-left: 80px;
+}
+
+.container1 .name5{
+    margin-top: -20px;
+    margin-left: 280px;
+
+}
+.container1 .name6{
+    margin-top: -1px;
+    margin-left: 280px;
+}
+.container1 .name7 {
+    margin-top: -1px;
+    margin-left: 280px;
+    
+}
+
+.container1 .name8 {
+    margin-top: -1px;
+    margin-left: 280px ;
+}
